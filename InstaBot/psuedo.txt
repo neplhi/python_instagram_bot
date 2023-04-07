@@ -1,0 +1,20 @@
+- post_image:
+    - image: {}
+    - caption: {}
+    - action: Upload the image to Instagram with the given caption
+
+- main:
+    - action: Open the CSV file for reading
+    - loop:
+        - action: Extract the image, theme, and post_time
+        - action: Convert the post_time to a datetime object
+        - loop:
+            - action: Get the current time
+            - condition: If the current hour matches the post_time hour and the difference between current minute and post_time minute is less than or equal to 1
+            - action: Create a caption with the theme and any additional hashtags
+            - action: Call the post_image function with the image and caption
+            - action: Print a message about the posted image
+            - action: Break the loop
+            - action: Wait for 60 seconds
+
+- call: main
